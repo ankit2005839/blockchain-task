@@ -24,9 +24,10 @@ class Blockchain:
         self.chain=[self.generateGenesBlock(),]
     def generateGenesBlock(self):
         return Block(0,time.time(),'Genesis Block',0,'0')
-    def addBlock(self,transaction):
+    def addBlock(self,transaction,difficulty=0):
         lastBlock=self.chain[-1]
-        newBlock=Block(lastBlock.index+1,0,time.time(),transaction,lastBlock.hash)
+        newBlock=Block(lastBlock.index+1,time.time(),transaction,0,lastBlock.hash)
+        newBlock.nonce=newBlock.mine_block(difficulty)
         
         newBlock.hash=newBlock.calculate()
         
@@ -40,9 +41,8 @@ class Blockchain:
                 return False
         return True
 coin=Blockchain()
-coin.addBlock(500)
+coin.addBlock(500,2)
 a=coin.is_valid()
 print(a)
 blk=Block(0,time.time(),200,0,'0')
 blk.mine_block(2)
- 
