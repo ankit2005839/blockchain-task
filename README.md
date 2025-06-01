@@ -11,4 +11,14 @@ In the Blockchain, each block contain :-
 We change only nonce value because all others parameters are fixed in the block , for generating a valid hash.
 For generating the Hash , we need all parameters of Block.
 If anyone change anything in any block then the hash changes , and the Whole blockchain will disturb.It makes it more secure.
-
+VALIDATION LOGIC:
+For security , we check the hash of the block and the previous hash of the block should match the hash of the previous block .
+It ensures the every block and overall chain is correct and there is no occurance of tampering.
+If someone tampered with any component (timestamp, nonce, transaction , etc.), the recomputed value won’t match.
+PROOF OF WORK :
+It is a consensus mechanism ,in which miners compete to  solve the complex mathmatics puzzle will be the first one to validate it  
+In PoW-based , the nonce is a number that miners adjust to find a hash of the block that meets the difficulty target.
+SHA-256 is a cryptographic hash function:
+It’s deterministic: same input → same output
+It’s unpredictable: even a 1-bit change → totally different output
+that's why it's difficult for miners to validate.
