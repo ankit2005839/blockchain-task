@@ -2,7 +2,7 @@ import hashlib
 import json
 import time
 class Block:
-    def __init__(self,index,tstamp,transaction,nonce=0,prevhash=''):
+    def __init__(self,index,tstamp,transaction,nonce=1,prevhash=''):
         self.nonce=nonce
         self.index=index
         self.tstamp=tstamp
@@ -27,10 +27,7 @@ class Blockchain:
     def addBlock(self,transaction,difficulty=0):
         lastBlock=self.chain[-1]
         newBlock=Block(lastBlock.index+1,time.time(),transaction,0,lastBlock.hash)
-        newBlock.nonce=newBlock.mine_block(difficulty)
-        
-        newBlock.hash=newBlock.calculate()
-        
+        newBlock.mine_block(difficulty)
         self.chain.append(newBlock)
              
     def is_valid(self):
@@ -41,8 +38,8 @@ class Blockchain:
                 return False
         return True
 coin=Blockchain()
-coin.addBlock(500,2)
+coin.addBlock('Ram paid 500 to Ramesh',2)
 a=coin.is_valid()
 print(a)
-blk=Block(0,time.time(),200,0,'0')
+blk=Block(0,time.time(),'Rahul paid 200 to Aman',0,'0')
 blk.mine_block(2)
